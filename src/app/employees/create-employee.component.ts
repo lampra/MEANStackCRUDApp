@@ -9,6 +9,9 @@ import { container } from "../../../node_modules/@angular/core/src/render3/instr
   styleUrls: ["./create-employee.component.css"]
 })
 export class CreateEmployeeComponent implements OnInit {
+//img element is not added to browser DOM i.e it is not rendered at all as ngIf property is set to false
+previewPhoto=false;
+
   datePickerConfig:Partial<BsDatepickerConfig>;
   // to make the radio button checked by default with the corresponding value
   //gender= 'male';
@@ -19,9 +22,16 @@ export class CreateEmployeeComponent implements OnInit {
     { id: 4, name: "Administration" }
   ];
   constructor() {
-    this.datePickerConfig=Object.assign({},{containerClass:'theme-dark-blue'});
+    this.datePickerConfig=Object.assign({},
+      {
+        containerClass:'theme-dark-blue'
+      }
+    
+    );
   }
-
+  togglePhotoPreview(){
+    this.previewPhoto=!this.previewPhoto;
+  }
   ngOnInit() {}
   saveEmployee(employeeForm: NgForm): void {
     console.log(employeeForm.value);
